@@ -3,205 +3,50 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Librería Cloud</title>
-
+<title>Librería Cloud - Tienda</title>
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
-body{
-font-family:Arial, Helvetica, sans-serif;
-background:#f4f4f4;
-color:#333;
-}
-
-.navbar{
-background:#2c3e50;
-color:white;
-padding:15px 40px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
-
-.logo{
-font-size:22px;
-font-weight:bold;
-}
-
-.nav-links{
-display:flex;
-gap:20px;
-align-items:center;
-}
-
-.nav-links a{
-color:white;
-text-decoration:none;
-}
-
-.cart-icon{
-cursor:pointer;
-font-size:20px;
-position:relative;
-}
-
-.cart-count{
-position:absolute;
-top:-8px;
-right:-10px;
-background:red;
-color:white;
-border-radius:50%;
-width:18px;
-height:18px;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:12px;
-}
-
-.hero{
-background:#34495e;
-color:white;
-text-align:center;
-padding:40px;
-}
-
-.container{
-max-width:1100px;
-margin:auto;
-padding:30px;
-}
-
-.filters{
-text-align:center;
-margin-bottom:30px;
-}
-
-.filter-btn{
-padding:8px 18px;
-margin:5px;
-border:none;
-background:#3498db;
-color:white;
-cursor:pointer;
-border-radius:20px;
-}
-
-.books-grid{
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-gap:20px;
-}
-
-.book-card{
-background:white;
-border-radius:6px;
-padding:20px;
-text-align:center;
-box-shadow:0 2px 8px rgba(0,0,0,0.1);
-}
-
-.book-card:hover{
-transform:scale(1.03);
-}
-
-.book-title{
-font-weight:bold;
-margin:10px 0;
-}
-
-.book-author{
-color:#777;
-font-size:14px;
-}
-
-.book-price{
-margin:10px 0;
-color:#27ae60;
-font-weight:bold;
-}
-
-.btn-add{
-background:#27ae60;
-color:white;
-border:none;
-padding:8px 12px;
-cursor:pointer;
-border-radius:4px;
-}
-
-.cart-modal{
-display:none;
-position:fixed;
-top:0;
-right:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.5);
-}
-
-.cart-sidebar{
-position:absolute;
-right:0;
-width:350px;
-height:100%;
-background:white;
-padding:20px;
-overflow:auto;
-}
-
-.cart-item{
-display:flex;
-justify-content:space-between;
-margin:10px 0;
-}
-
-.cart-total{
-margin-top:20px;
-font-weight:bold;
-}
-
-.checkout-btn{
-margin-top:15px;
-width:100%;
-padding:10px;
-background:#27ae60;
-border:none;
-color:white;
-cursor:pointer;
-}
-
-footer{
-margin-top:40px;
-background:#2c3e50;
-color:white;
-text-align:center;
-padding:20px;
-}
-
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:Arial,sans-serif;background:#f4f4f4;color:#333;}
+.navbar{background:#2c3e50;color:white;padding:15px 40px;display:flex;justify-content:space-between;align-items:center;}
+.logo{font-size:22px;font-weight:bold;}
+.nav-links{display:flex;gap:20px;align-items:center;}
+.nav-links a, .nav-links button{color:white;text-decoration:none;background:none;border:none;cursor:pointer;font-size:16px;}
+.cart-icon{cursor:pointer;position:relative;font-size:20px;}
+.cart-count{position:absolute;top:-8px;right:-10px;background:red;color:white;border-radius:50%;width:18px;height:18px;display:flex;justify-content:center;align-items:center;font-size:12px;}
+.hero{text-align:center;padding:40px;background:#34495e;color:white;}
+.container{max-width:1100px;margin:auto;padding:30px;}
+.filters{text-align:center;margin-bottom:30px;}
+.filter-btn{padding:8px 18px;margin:5px;border:none;background:#3498db;color:white;cursor:pointer;border-radius:20px;}
+.books-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px;}
+.book-card{background:white;border-radius:6px;padding:20px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.1);}
+.book-card:hover{transform:scale(1.03);}
+.book-title{font-weight:bold;margin:10px 0;}
+.book-author{color:#777;font-size:14px;}
+.book-price{margin:10px 0;color:#27ae60;font-weight:bold;}
+.btn-add{background:#27ae60;color:white;border:none;padding:8px 12px;cursor:pointer;border-radius:4px;}
+.cart-modal{display:none;position:fixed;top:0;right:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:1000;justify-content:center;align-items:center;}
+.cart-sidebar{background:white;width:350px;height:90%;padding:20px;overflow:auto;border-radius:6px;}
+.cart-item{display:flex;justify-content:space-between;margin:10px 0;align-items:center;}
+.cart-item span{display:block;}
+.cart-item button{padding:2px 6px;margin-left:5px;border:none;background:#e74c3c;color:white;border-radius:4px;cursor:pointer;}
+.cart-total{margin-top:20px;font-weight:bold;text-align:right;}
+.checkout-btn{margin-top:15px;width:100%;padding:10px;background:#27ae60;border:none;color:white;cursor:pointer;}
+.login-modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);justify-content:center;align-items:center;z-index:1001;}
+.login-box{background:white;padding:20px;border-radius:6px;width:90%;max-width:400px;}
+.login-box input{width:100%;padding:8px;margin:5px 0;border:1px solid #ccc;border-radius:4px;}
+.login-box button{width:100%;padding:10px;background:#3498db;color:white;border:none;border-radius:4px;cursor:pointer;margin-top:10px;}
+footer{margin-top:40px;background:#2c3e50;color:white;text-align:center;padding:20px;}
 </style>
 </head>
-
 <body>
 
 <nav class="navbar">
 <div class="logo">📚 Librería Cloud</div>
-
 <div class="nav-links">
 <a href="#">Inicio</a>
 <a href="#">Libros</a>
-
-<div class="cart-icon" onclick="openCart()">
-🛒
-<span class="cart-count" id="cartCount">0</span>
-</div>
-
+<button id="loginBtn" onclick="openLogin()">Iniciar Sesión</button>
+<div class="cart-icon" onclick="openCart()">🛒<span class="cart-count" id="cartCount">0</span></div>
 </div>
 </nav>
 
@@ -211,47 +56,32 @@ padding:20px;
 </header>
 
 <div class="container">
-
 <div class="filters">
-
 <button class="filter-btn" onclick="filterBooks('todos')">Todos</button>
-
-<button class="filter-btn" onclick="filterBooks('programacion')">
-Programación
-</button>
-
-<button class="filter-btn" onclick="filterBooks('diseno')">
-Diseño
-</button>
-
-<button class="filter-btn" onclick="filterBooks('negocios')">
-Negocios
-</button>
-
+<button class="filter-btn" onclick="filterBooks('programacion')">Programación</button>
+<button class="filter-btn" onclick="filterBooks('diseno')">Diseño</button>
+<button class="filter-btn" onclick="filterBooks('negocios')">Negocios</button>
 </div>
 
 <div class="books-grid" id="booksGrid"></div>
-
 </div>
 
 <div class="cart-modal" id="cartModal">
-
 <div class="cart-sidebar">
-
 <h2>Carrito</h2>
-
 <div id="cartItems"></div>
-
-<div class="cart-total">
-Total: $<span id="cartTotal">0</span>
+<div class="cart-total">Total: $<span id="cartTotal">0</span></div>
+<button class="checkout-btn" onclick="checkout()">Comprar</button>
+</div>
 </div>
 
-<button class="checkout-btn" onclick="checkout()">
-Comprar
-</button>
-
+<div class="login-modal" id="loginModal">
+<div class="login-box">
+<h2>Iniciar Sesión</h2>
+<input type="text" id="username" placeholder="Usuario" required>
+<input type="password" id="password" placeholder="Contraseña" required>
+<button onclick="login()">Entrar</button>
 </div>
-
 </div>
 
 <footer>
@@ -259,150 +89,124 @@ Comprar
 </footer>
 
 <script>
-
+// Libros en español
 const books=[
+{id:1,title:"Código Limpio",author:"Robert C. Martin",price:35,category:"programacion"},
+{id:2,title:"El Programador Pragmático",author:"Andrew Hunt",price:40,category:"programacion"},
+{id:3,title:"JavaScript Elocuente",author:"Marijn Haverbeke",price:30,category:"programacion"},
+{id:4,title:"No me hagas pensar",author:"Steve Krug",price:25,category:"diseno"},
+{id:5,title:"El Diseño de las Cosas Cotidianas",author:"Don Norman",price:27,category:"diseno"},
+{id:6,title:"Diseño UX",author:"Russ Unger",price:22,category:"diseno"},
+{id:7,title:"El Método Lean Startup",author:"Eric Ries",price:21,category:"negocios"},
+{id:8,title:"De Cero a Uno",author:"Peter Thiel",price:20,category:"negocios"},
+{id:9,title:"Hábitos Atómicos",author:"James Clear",price:19,category:"negocios"},
+{id:10,title:"Pensar Rápido, Pensar Despacio",author:"Daniel Kahneman",price:23,category:"negocios"}
+];
 
-{ id:1,title:"Código Limpio",author:"Robert C. Martin",price:35,category:"programacion" },
+let cart=JSON.parse(localStorage.getItem('cart'))||[];
+let filter="todos";
+let currentUser=JSON.parse(localStorage.getItem('user'))||null;
 
-{ id:2,title:"El Programador Pragmático",author:"Andrew Hunt",price:40,category:"programacion" },
-
-{ id:3,title:"JavaScript Elocuente",author:"Marijn Haverbeke",price:30,category:"programacion" },
-
-{ id:4,title:"Aprendiendo JavaScript",author:"Ethan Brown",price:28,category:"programacion" },
-
-{ id:5,title:"No me hagas pensar",author:"Steve Krug",price:25,category:"diseno" },
-
-{ id:6,title:"El Diseño de las Cosas Cotidianas",author:"Don Norman",price:27,category:"diseno" },
-
-{ id:7,title:"Diseño de Interfaces",author:"Jenifer Tidwell",price:35,category:"diseno" },
-
-{ id:8,title:"Diseño UX",author:"Russ Unger",price:22,category:"diseno" },
-
-{ id:9,title:"El Método Lean Startup",author:"Eric Ries",price:21,category:"negocios" },
-
-{ id:10,title:"De Cero a Uno",author:"Peter Thiel",price:20,category:"negocios" },
-
-{ id:11,title:"Hábitos Atómicos",author:"James Clear",price:19,category:"negocios" },
-
-{ id:12,title:"Pensar Rápido Pensar Despacio",author:"Daniel Kahneman",price:23,category:"negocios" }
-
-]
-
-let cart=[]
-let filter="todos"
-
+// ================= Renderizar libros =================
 function renderBooks(){
-
-let grid=document.getElementById("booksGrid")
-
-let filtered=filter==="todos"?books:books.filter(b=>b.category===filter)
-
+let grid=document.getElementById("booksGrid");
+let filtered=filter==="todos"?books:books.filter(b=>b.category===filter);
 grid.innerHTML=filtered.map(b=>`
-
 <div class="book-card">
-
 <h3 class="book-title">${b.title}</h3>
-
 <p class="book-author">${b.author}</p>
-
 <p class="book-price">$${b.price}</p>
-
-<button class="btn-add" onclick="addToCart(${b.id})">
-
-Agregar al carrito
-
-</button>
-
+<button class="btn-add" onclick="addToCart(${b.id})">Agregar al carrito</button>
 </div>
-
-`).join("")
-
+`).join("");
 }
 
-function filterBooks(cat){
+// ================= Filtrar libros =================
+function filterBooks(cat){filter=cat;renderBooks();}
 
-filter=cat
-
-renderBooks()
-
-}
-
+// ================= Carrito =================
 function addToCart(id){
-
-let book=books.find(b=>b.id===id)
-
-let item=cart.find(i=>i.id===id)
-
-if(item){
-
-item.qty++
-
-}
-
-else{
-
-cart.push({...book,qty:1})
-
-}
-
-updateCart()
-
+let book=books.find(b=>b.id===id);
+let item=cart.find(i=>i.id===id);
+if(item){item.qty++}else{cart.push({...book,qty:1})}
+saveCart();
+updateCart();
 }
 
 function updateCart(){
-
-let count=cart.reduce((a,b)=>a+b.qty,0)
-
-document.getElementById("cartCount").textContent=count
-
-let items=document.getElementById("cartItems")
-
-items.innerHTML=cart.map(i=>`
-
+document.getElementById("cartCount").textContent=cart.reduce((a,b)=>a+b.qty,0);
+document.getElementById("cartItems").innerHTML=cart.map(i=>`
 <div class="cart-item">
-
-<span>${i.title}</span>
-
-<span>$${i.price*i.qty}</span>
-
+<span>${i.title} x <input type="number" min="1" value="${i.qty}" onchange="changeQty(${i.id},this.value)" style="width:40px"></span>
+<span>$${i.price*i.qty} <button onclick="removeFromCart(${i.id})">X</button></span>
 </div>
-
-`).join("")
-
-let total=cart.reduce((t,i)=>t+(i.price*i.qty),0)
-
-document.getElementById("cartTotal").textContent=total
-
+`).join("");
+document.getElementById("cartTotal").textContent=cart.reduce((t,i)=>t+(i.price*i.qty),0);
 }
 
-function openCart(){
-
-document.getElementById("cartModal").style.display="block"
-
+function changeQty(id,val){
+let item=cart.find(i=>i.id===id);
+item.qty=parseInt(val)||1;
+saveCart();
+updateCart();
 }
 
+function removeFromCart(id){
+cart=cart.filter(i=>i.id!==id);
+saveCart();
+updateCart();
+}
+
+function saveCart(){localStorage.setItem('cart',JSON.stringify(cart));}
+function openCart(){document.getElementById("cartModal").style.display="flex";}
+function closeCart(){document.getElementById("cartModal").style.display="none";}
+
+// ================= Login =================
+function openLogin(){document.getElementById("loginModal").style.display="flex";}
+function closeLogin(){document.getElementById("loginModal").style.display="none";}
+
+function login(){
+let user=document.getElementById("username").value;
+let pass=document.getElementById("password").value;
+if(user && pass){
+currentUser={username:user};
+localStorage.setItem('user',JSON.stringify(currentUser));
+updateUserUI();
+closeLogin();
+alert(`Bienvenido ${user}`);
+}else{alert("Rellena usuario y contraseña");}
+document.getElementById("username").value="";
+document.getElementById("password").value="";
+}
+
+function logout(){
+currentUser=null;
+localStorage.removeItem('user');
+updateUserUI();
+alert("Has cerrado sesión");
+}
+
+// ================= Actualizar UI usuario =================
+function updateUserUI(){
+const btn=document.getElementById("loginBtn");
+if(currentUser){btn.textContent=`👤 ${currentUser.username} (Salir)`;btn.onclick=logout;}
+else{btn.textContent="Iniciar Sesión";btn.onclick=openLogin;}
+updateCart();
+}
+
+// ================= Checkout =================
 function checkout(){
-
-if(cart.length===0){
-
-alert("Tu carrito está vacío")
-
-return
-
+if(!currentUser){alert("Debes iniciar sesión");openLogin();return;}
+if(cart.length===0){alert("Carrito vacío");return;}
+alert(`¡Compra realizada!\nUsuario: ${currentUser.username}\nTotal: $${cart.reduce((t,i)=>t+(i.price*i.qty),0)}`);
+cart=[];saveCart();updateCart();closeCart();
 }
 
-alert("Compra realizada con éxito")
-
-cart=[]
-
-updateCart()
-
-document.getElementById("cartModal").style.display="none"
-
-}
-
-renderBooks()
-
+// ================= Inicialización =================
+document.addEventListener("DOMContentLoaded",()=>{
+renderBooks();
+updateUserUI();
+});
 </script>
 
 </body>
