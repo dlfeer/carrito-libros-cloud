@@ -1,769 +1,409 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Librería Cloud - Carrito de Compras</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Librería Cloud</title>
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f5f5;
-            color: #333;
-        }
+<style>
 
-        .navbar {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
+body{
+font-family:Arial, Helvetica, sans-serif;
+background:#f4f4f4;
+color:#333;
+}
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
+.navbar{
+background:#2c3e50;
+color:white;
+padding:15px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
 
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-        }
+.logo{
+font-size:22px;
+font-weight:bold;
+}
 
-        .cart-icon {
-            position: relative;
-            cursor: pointer;
-            font-size: 1.5rem;
-        }
+.nav-links{
+display:flex;
+gap:20px;
+align-items:center;
+}
 
-        .cart-count {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: #ff6b6b;
-            color: white;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-            font-weight: bold;
-        }
+.nav-links a{
+color:white;
+text-decoration:none;
+}
 
-        .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-align: center;
-            padding: 3rem 2rem;
-        }
+.cart-icon{
+cursor:pointer;
+font-size:20px;
+position:relative;
+}
 
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
+.cart-count{
+position:absolute;
+top:-8px;
+right:-10px;
+background:red;
+color:white;
+border-radius:50%;
+width:18px;
+height:18px;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:12px;
+}
 
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 2rem;
-        }
+.hero{
+background:#34495e;
+color:white;
+text-align:center;
+padding:40px;
+}
 
-        .filters {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+.container{
+max-width:1100px;
+margin:auto;
+padding:30px;
+}
 
-        .filter-btn {
-            padding: 0.5rem 1.5rem;
-            border: 2px solid #667eea;
-            background: white;
-            color: #667eea;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
+.filters{
+text-align:center;
+margin-bottom:30px;
+}
 
-        .filter-btn:hover, .filter-btn.active {
-            background: #667eea;
-            color: white;
-        }
+.filter-btn{
+padding:8px 18px;
+margin:5px;
+border:none;
+background:#3498db;
+color:white;
+cursor:pointer;
+border-radius:20px;
+}
 
-        .books-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 2rem;
-        }
+.books-grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+gap:20px;
+}
 
-        .book-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
+.book-card{
+background:white;
+border-radius:6px;
+padding:20px;
+text-align:center;
+box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
 
-        .book-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-        }
+.book-card:hover{
+transform:scale(1.03);
+}
 
-        .book-cover {
-            height: 150px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: white;
-            position: relative;
-        }
+.book-title{
+font-weight:bold;
+margin:10px 0;
+}
 
-        .book-category {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: rgba(255,255,255,0.9);
-            padding: 0.25rem 0.75rem;
-            border-radius: 15px;
-            font-size: 0.75rem;
-            color: #667eea;
-            font-weight: bold;
-        }
+.book-author{
+color:#777;
+font-size:14px;
+}
 
-        .book-info {
-            padding: 1.5rem;
-        }
+.book-price{
+margin:10px 0;
+color:#27ae60;
+font-weight:bold;
+}
 
-        .book-title {
-            font-size: 1.1rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
+.btn-add{
+background:#27ae60;
+color:white;
+border:none;
+padding:8px 12px;
+cursor:pointer;
+border-radius:4px;
+}
 
-        .book-author {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
+.cart-modal{
+display:none;
+position:fixed;
+top:0;
+right:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
+}
 
-        .book-price {
-            font-size: 1.25rem;
-            color: #667eea;
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
+.cart-sidebar{
+position:absolute;
+right:0;
+width:350px;
+height:100%;
+background:white;
+padding:20px;
+overflow:auto;
+}
 
-        .btn-add {
-            width: 100%;
-            padding: 0.75rem;
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
+.cart-item{
+display:flex;
+justify-content:space-between;
+margin:10px 0;
+}
 
-        .btn-add:hover {
-            background: #764ba2;
-        }
+.cart-total{
+margin-top:20px;
+font-weight:bold;
+}
 
-        /* Modal del carrito */
-        .cart-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 1000;
-        }
+.checkout-btn{
+margin-top:15px;
+width:100%;
+padding:10px;
+background:#27ae60;
+border:none;
+color:white;
+cursor:pointer;
+}
 
-        .cart-modal.active {
-            display: block;
-        }
+footer{
+margin-top:40px;
+background:#2c3e50;
+color:white;
+text-align:center;
+padding:20px;
+}
 
-        .cart-sidebar {
-            position: absolute;
-            right: 0;
-            top: 0;
-            width: 100%;
-            max-width: 400px;
-            height: 100%;
-            background: white;
-            padding: 2rem;
-            overflow-y: auto;
-            animation: slideIn 0.3s;
-        }
-
-        @keyframes slideIn {
-            from { transform: translateX(100%); }
-            to { transform: translateX(0); }
-        }
-
-        .cart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid #eee;
-        }
-
-        .close-btn {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        .cart-item {
-            display: flex;
-            gap: 1rem;
-            padding: 1rem;
-            border-bottom: 1px solid #eee;
-            align-items: center;
-        }
-
-        .cart-item-info {
-            flex: 1;
-        }
-
-        .cart-item-title {
-            font-weight: bold;
-            margin-bottom: 0.25rem;
-        }
-
-        .cart-item-price {
-            color: #667eea;
-            font-weight: bold;
-        }
-
-        .quantity-controls {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 0.5rem;
-        }
-
-        .qty-btn {
-            width: 30px;
-            height: 30px;
-            border: 1px solid #ddd;
-            background: white;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-
-        .remove-btn {
-            color: #ff6b6b;
-            cursor: pointer;
-            font-size: 1.2rem;
-        }
-
-        .cart-total {
-            margin-top: 2rem;
-            padding-top: 1rem;
-            border-top: 2px solid #eee;
-            text-align: right;
-            font-size: 1.25rem;
-            font-weight: bold;
-        }
-
-        .checkout-btn {
-            width: 100%;
-            padding: 1rem;
-            background: #10b981;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 1rem;
-        }
-
-        .checkout-btn:hover {
-            background: #059669;
-        }
-
-        .empty-cart {
-            text-align: center;
-            padding: 3rem;
-            color: #999;
-        }
-
-        /* Modal de login */
-        .login-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .login-modal.active {
-            display: flex;
-        }
-
-        .login-box {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 400px;
-            animation: fadeIn 0.3s;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .login-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .btn-login-submit {
-            width: 100%;
-            padding: 0.75rem;
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .notification {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #333;
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 5px;
-            transform: translateX(400px);
-            transition: transform 0.3s;
-            z-index: 2000;
-        }
-
-        .notification.show {
-            transform: translateX(0);
-        }
-
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .btn-logout {
-            background: rgba(255,255,255,0.2);
-            border: 1px solid white;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
-        }
-    </style>
+</style>
 </head>
+
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="logo">📚 Librería Cloud</div>
-        <div class="nav-links">
-            <a href="#">Inicio</a>
-            <a href="#libros">Libros</a>
-            <button id="loginBtn" class="btn-logout" onclick="openLogin()">Iniciar Sesión</button>
-            <div class="cart-icon" onclick="openCart()">
-                🛒
-                <span class="cart-count" id="cartCount">0</span>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Hero -->
-    <header class="hero">
-        <h1>Descubre Mundos Infinitos</h1>
-        <p>Los mejores libros de programación, diseño y tecnología</p>
-    </header>
+<nav class="navbar">
+<div class="logo">📚 Librería Cloud</div>
 
-    <!-- Main Content -->
-    <div class="container">
-        <!-- Filtros -->
-        <div class="filters">
-            <button class="filter-btn active" onclick="filterBooks('todos')">Todos</button>
-            <button class="filter-btn" onclick="filterBooks('programacion')">Programación</button>
-            <button class="filter-btn" onclick="filterBooks('diseno')">Diseño</button>
-            <button class="filter-btn" onclick="filterBooks('negocios')">Negocios</button>
-        </div>
+<div class="nav-links">
+<a href="#">Inicio</a>
+<a href="#">Libros</a>
 
-        <!-- Grid de libros -->
-        <div class="books-grid" id="booksGrid">
-            <!-- Los libros se insertan aquí con JavaScript -->
-        </div>
-    </div>
+<div class="cart-icon" onclick="openCart()">
+🛒
+<span class="cart-count" id="cartCount">0</span>
+</div>
 
-    <!-- Modal del Carrito -->
-    <div class="cart-modal" id="cartModal" onclick="closeCartOutside(event)">
-        <div class="cart-sidebar" onclick="event.stopPropagation()">
-            <div class="cart-header">
-                <h2>Tu Carrito</h2>
-                <button class="close-btn" onclick="closeCart()">&times;</button>
-            </div>
-            <div id="cartItems">
-                <!-- Items del carrito -->
-            </div>
-            <div class="cart-total">
-                Total: $<span id="cartTotal">0.00</span>
-            </div>
-            <button class="checkout-btn" onclick="checkout()">Proceder al Pago</button>
-        </div>
-    </div>
+</div>
+</nav>
 
-    <!-- Modal de Login -->
-    <div class="login-modal" id="loginModal" onclick="closeLoginOutside(event)">
-        <div class="login-box" onclick="event.stopPropagation()">
-            <div class="login-header">
-                <h2>Iniciar Sesión</h2>
-                <button class="close-btn" onclick="closeLogin()">&times;</button>
-            </div>
-            <form onsubmit="login(event)">
-                <div class="form-group">
-                    <label>Usuario:</label>
-                    <input type="text" id="username" required placeholder="Tu usuario">
-                </div>
-                <div class="form-group">
-                    <label>Contraseña:</label>
-                    <input type="password" id="password" required placeholder="••••••••">
-                </div>
-                <button type="submit" class="btn-login-submit">Entrar</button>
-            </form>
-            <p style="margin-top: 1rem; color: #666; font-size: 0.9rem;">
-                💡 Puedes usar cualquier usuario y contraseña
-            </p>
-        </div>
-    </div>
+<header class="hero">
+<h1>Tienda de Libros</h1>
+<p>Libros reales sobre programación, diseño y negocios</p>
+</header>
 
-    <!-- Notificación -->
-    <div class="notification" id="notification"></div>
+<div class="container">
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 Librería Cloud - Computo en la Nube IRIC 81</p>
-    </footer>
+<div class="filters">
 
-    <script>
-        // ==========================================
-        // DATOS DE LIBROS
-        // ==========================================
-        const books = [
-            { id: 1, title: "JavaScript: The Good Parts", author: "Douglas Crockford", price: 29.99, category: "programacion", emoji: "📘" },
-            { id: 2, title: "Clean Code", author: "Robert C. Martin", price: 34.99, category: "programacion", emoji: "📗" },
-            { id: 3, title: "The Pragmatic Programmer", author: "Andrew Hunt", price: 39.99, category: "programacion", emoji: "📙" },
-            { id: 4, title: "Don't Make Me Think", author: "Steve Krug", price: 24.99, category: "diseno", emoji: "🎨" },
-            { id: 5, title: "Design of Everyday Things", author: "Don Norman", price: 27.99, category: "diseno", emoji: "✏️" },
-            { id: 6, title: "Hooked", author: "Nir Eyal", price: 22.99, category: "diseno", emoji: "🎯" },
-            { id: 7, title: "Zero to One", author: "Peter Thiel", price: 19.99, category: "negocios", emoji: "💼" },
-            { id: 8, title: "The Lean Startup", author: "Eric Ries", price: 21.99, category: "negocios", emoji: "📈" },
-            { id: 9, title: "Eloquent JavaScript", author: "Marijn Haverbeke", price: 32.99, category: "programacion", emoji: "💻" },
-            { id: 10, title: "Thinking, Fast and Slow", author: "Daniel Kahneman", price: 18.99, category: "negocios", emoji: "🧠" },
-            { id: 11, title: "Refactoring UI", author: "Adam Wathan", price: 35.99, category: "diseno", emoji: "🖌️" },
-            { id: 12, title: "You Don't Know JS", author: "Kyle Simpson", price: 28.99, category: "programacion", emoji: "🔧" }
-        ];
+<button class="filter-btn" onclick="filterBooks('todos')">Todos</button>
 
-        // ==========================================
-        // ESTADO
-        // ==========================================
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        let currentUser = JSON.parse(localStorage.getItem('user')) || null;
-        let currentFilter = 'todos';
+<button class="filter-btn" onclick="filterBooks('programacion')">
+Programación
+</button>
 
-        // ==========================================
-        // INICIALIZACIÓN
-        // ==========================================
-        document.addEventListener('DOMContentLoaded', function() {
-            renderBooks();
-            updateCartUI();
-            updateUserUI();
-        });
+<button class="filter-btn" onclick="filterBooks('diseno')">
+Diseño
+</button>
 
-        // ==========================================
-        // RENDERIZAR LIBROS
-        // ==========================================
-        function renderBooks() {
-            const grid = document.getElementById('booksGrid');
-            const filtered = currentFilter === 'todos' 
-                ? books 
-                : books.filter(b => b.category === currentFilter);
-            
-            grid.innerHTML = filtered.map(book => `
-                <div class="book-card">
-                    <div class="book-cover">
-                        <span class="book-category">${getCategoryName(book.category)}</span>
-                        ${book.emoji}
-                    </div>
-                    <div class="book-info">
-                        <div class="book-title">${book.title}</div>
-                        <div class="book-author">por ${book.author}</div>
-                        <div class="book-price">$${book.price.toFixed(2)}</div>
-                        <button class="btn-add" onclick="addToCart(${book.id})">
-                            Agregar al Carrito
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-        }
+<button class="filter-btn" onclick="filterBooks('negocios')">
+Negocios
+</button>
 
-        function getCategoryName(cat) {
-            const names = { 'programacion': 'Programación', 'diseno': 'Diseño', 'negocios': 'Negocios' };
-            return names[cat] || cat;
-        }
+</div>
 
-        function filterBooks(category) {
-            currentFilter = category;
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if(btn.textContent.toLowerCase().includes(category === 'todos' ? 'todos' : 
-                   category === 'programacion' ? 'programación' :
-                   category === 'diseno' ? 'diseño' : 'negocios')) {
-                    btn.classList.add('active');
-                }
-            });
-            renderBooks();
-        }
+<div class="books-grid" id="booksGrid"></div>
 
-        // ==========================================
-        // CARRITO
-        // ==========================================
-        function addToCart(bookId) {
-            const book = books.find(b => b.id === bookId);
-            const existing = cart.find(item => item.id === bookId);
-            
-            if(existing) {
-                existing.quantity++;
-            } else {
-                cart.push({ ...book, quantity: 1 });
-            }
-            
-            saveCart();
-            updateCartUI();
-            showNotification(`"${book.title}" agregado al carrito`);
-        }
+</div>
 
-        function updateQuantity(bookId, change) {
-            const item = cart.find(item => item.id === bookId);
-            if(item) {
-                item.quantity += change;
-                if(item.quantity <= 0) {
-                    cart = cart.filter(item => item.id !== bookId);
-                }
-                saveCart();
-                updateCartUI();
-            }
-        }
+<div class="cart-modal" id="cartModal">
 
-        function removeFromCart(bookId) {
-            cart = cart.filter(item => item.id !== bookId);
-            saveCart();
-            updateCartUI();
-            showNotification('Item eliminado del carrito');
-        }
+<div class="cart-sidebar">
 
-        function saveCart() {
-            localStorage.setItem('cart', JSON.stringify(cart));
-        }
+<h2>Carrito</h2>
 
-        function updateCartUI() {
-            // Actualizar contador
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            document.getElementById('cartCount').textContent = totalItems;
-            
-            // Actualizar items
-            const container = document.getElementById('cartItems');
-            if(cart.length === 0) {
-                container.innerHTML = '<div class="empty-cart"><p>🛒 Tu carrito está vacío</p><p>Agrega algunos libros</p></div>';
-            } else {
-                container.innerHTML = cart.map(item => `
-                    <div class="cart-item">
-                        <div style="font-size: 2rem;">${item.emoji}</div>
-                        <div class="cart-item-info">
-                            <div class="cart-item-title">${item.title}</div>
-                            <div class="cart-item-price">$${(item.price * item.quantity).toFixed(2)}</div>
-                            <div class="quantity-controls">
-                                <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
-                                <span>${item.quantity}</span>
-                                <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
-                            </div>
-                        </div>
-                        <span class="remove-btn" onclick="removeFromCart(${item.id})">🗑️</span>
-                    </div>
-                `).join('');
-            }
-            
-            // Actualizar total
-            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            document.getElementById('cartTotal').textContent = total.toFixed(2);
-        }
+<div id="cartItems"></div>
 
-        function openCart() {
-            document.getElementById('cartModal').classList.add('active');
-        }
+<div class="cart-total">
+Total: $<span id="cartTotal">0</span>
+</div>
 
-        function closeCart() {
-            document.getElementById('cartModal').classList.remove('active');
-        }
+<button class="checkout-btn" onclick="checkout()">
+Comprar
+</button>
 
-        function closeCartOutside(event) {
-            if(event.target.id === 'cartModal') closeCart();
-        }
+</div>
 
-        // ==========================================
-        // LOGIN
-        // ==========================================
-        function openLogin() {
-            if(currentUser) {
-                // Logout
-                currentUser = null;
-                localStorage.removeItem('user');
-                updateUserUI();
-                showNotification('Sesión cerrada');
-            } else {
-                document.getElementById('loginModal').classList.add('active');
-            }
-        }
+</div>
 
-        function closeLogin() {
-            document.getElementById('loginModal').classList.remove('active');
-        }
+<footer>
+<p>Proyecto Computación en la Nube</p>
+</footer>
 
-        function closeLoginOutside(event) {
-            if(event.target.id === 'loginModal') closeLogin();
-        }
+<script>
 
-        function login(event) {
-            event.preventDefault();
-            const username = document.getElementById('username').value;
-            
-            currentUser = { username: username, loginTime: new Date().toISOString() };
-            localStorage.setItem('user', JSON.stringify(currentUser));
-            
-            updateUserUI();
-            closeLogin();
-            showNotification(`¡Bienvenido, ${username}!`);
-            document.getElementById('username').value = '';
-            document.getElementById('password').value = '';
-        }
+const books=[
 
-        function updateUserUI() {
-            const btn = document.getElementById('loginBtn');
-            if(currentUser) {
-                btn.textContent = `👤 ${currentUser.username} (Salir)`;
-            } else {
-                btn.textContent = 'Iniciar Sesión';
-            }
-        }
+{ id:1,title:"Código Limpio",author:"Robert C. Martin",price:35,category:"programacion" },
 
-        // ==========================================
-        // CHECKOUT
-        // ==========================================
-        function checkout() {
-            if(cart.length === 0) {
-                showNotification('Tu carrito está vacío');
-                return;
-            }
-            
-            if(!currentUser) {
-                showNotification('Por favor inicia sesión primero');
-                closeCart();
-                openLogin();
-                return;
-            }
-            
-            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            alert(`¡Compra realizada con éxito! 🎉\n\nTotal: $${total.toFixed(2)}\n\nGracias por tu compra, ${currentUser.username}!`);
-            
-            cart = [];
-            saveCart();
-            updateCartUI();
-            closeCart();
-        }
+{ id:2,title:"El Programador Pragmático",author:"Andrew Hunt",price:40,category:"programacion" },
 
-        // ==========================================
-        // NOTIFICACIONES
-        // ==========================================
-        function showNotification(message) {
-            const notif = document.getElementById('notification');
-            notif.textContent = message;
-            notif.classList.add('show');
-            
-            setTimeout(() => {
-                notif.classList.remove('show');
-            }, 3000);
-        }
-    </script>
+{ id:3,title:"JavaScript Elocuente",author:"Marijn Haverbeke",price:30,category:"programacion" },
+
+{ id:4,title:"Aprendiendo JavaScript",author:"Ethan Brown",price:28,category:"programacion" },
+
+{ id:5,title:"No me hagas pensar",author:"Steve Krug",price:25,category:"diseno" },
+
+{ id:6,title:"El Diseño de las Cosas Cotidianas",author:"Don Norman",price:27,category:"diseno" },
+
+{ id:7,title:"Diseño de Interfaces",author:"Jenifer Tidwell",price:35,category:"diseno" },
+
+{ id:8,title:"Diseño UX",author:"Russ Unger",price:22,category:"diseno" },
+
+{ id:9,title:"El Método Lean Startup",author:"Eric Ries",price:21,category:"negocios" },
+
+{ id:10,title:"De Cero a Uno",author:"Peter Thiel",price:20,category:"negocios" },
+
+{ id:11,title:"Hábitos Atómicos",author:"James Clear",price:19,category:"negocios" },
+
+{ id:12,title:"Pensar Rápido Pensar Despacio",author:"Daniel Kahneman",price:23,category:"negocios" }
+
+]
+
+let cart=[]
+let filter="todos"
+
+function renderBooks(){
+
+let grid=document.getElementById("booksGrid")
+
+let filtered=filter==="todos"?books:books.filter(b=>b.category===filter)
+
+grid.innerHTML=filtered.map(b=>`
+
+<div class="book-card">
+
+<h3 class="book-title">${b.title}</h3>
+
+<p class="book-author">${b.author}</p>
+
+<p class="book-price">$${b.price}</p>
+
+<button class="btn-add" onclick="addToCart(${b.id})">
+
+Agregar al carrito
+
+</button>
+
+</div>
+
+`).join("")
+
+}
+
+function filterBooks(cat){
+
+filter=cat
+
+renderBooks()
+
+}
+
+function addToCart(id){
+
+let book=books.find(b=>b.id===id)
+
+let item=cart.find(i=>i.id===id)
+
+if(item){
+
+item.qty++
+
+}
+
+else{
+
+cart.push({...book,qty:1})
+
+}
+
+updateCart()
+
+}
+
+function updateCart(){
+
+let count=cart.reduce((a,b)=>a+b.qty,0)
+
+document.getElementById("cartCount").textContent=count
+
+let items=document.getElementById("cartItems")
+
+items.innerHTML=cart.map(i=>`
+
+<div class="cart-item">
+
+<span>${i.title}</span>
+
+<span>$${i.price*i.qty}</span>
+
+</div>
+
+`).join("")
+
+let total=cart.reduce((t,i)=>t+(i.price*i.qty),0)
+
+document.getElementById("cartTotal").textContent=total
+
+}
+
+function openCart(){
+
+document.getElementById("cartModal").style.display="block"
+
+}
+
+function checkout(){
+
+if(cart.length===0){
+
+alert("Tu carrito está vacío")
+
+return
+
+}
+
+alert("Compra realizada con éxito")
+
+cart=[]
+
+updateCart()
+
+document.getElementById("cartModal").style.display="none"
+
+}
+
+renderBooks()
+
+</script>
+
 </body>
 </html>
